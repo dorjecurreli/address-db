@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Set your password{% endblock %}
+
+{% block body %}
+    <h1>Set your password</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.plainPassword) }}
+    <button class="btn btn-primary">Set Password</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,57 @@
+<form action="{{ path('labels_edit', {'id': label.id}) }}" method="post" enctype="multipart/form-data">
+
+    {#    {{ csrf_field() }}#}
+
+
+    <!-- Name -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_name">* {% trans from 'dashboard' %}labels.field.name{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="{{ label.name }}" name="label_name" value="{{ label.name }}" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Color -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_color">* {% trans from 'dashboard' %}labels.field.color{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="{{ label.color }}" name="label_color" value="{{ label.color }}" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Icon -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_icon">* {% trans from 'dashboard' %}labels.field.icon{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="{{ label.icon }}" name="label_icon" value="{{ label.icon }}" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Color -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_desciption">* {% trans from 'dashboard' %}labels.field.description{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="{{ label.description }}" name="label_description" value="{{ label.description }}" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-custom" name="submit">{% trans from 'global' %}global.save{% endtrans %}</button>
+            <button type="reset" class="btn btn-secondary btn-custom" onclick="window.location.href = '{{ path('labels_index')}}'">{% trans from 'global' %}global.cancel{% endtrans %}</button>
+        </div>
+    </div>
+
+</form>

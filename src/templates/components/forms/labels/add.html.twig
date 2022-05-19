@@ -1,0 +1,57 @@
+<form action="{{ path('labels_store') }}" method="post" enctype="multipart/form-data">
+
+    {#    {{ csrf_field() }}#}
+
+
+    <!-- Name -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_name">* {% trans from 'dashboard' %}labels.field.name{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="" name="label_name" value="" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Color -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_color">* {% trans from 'dashboard' %}labels.field.color{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="" name="label_color" value="" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Icon -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_icon">* {% trans from 'dashboard' %}labels.field.icon{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="" name="label_icon" value="" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Color -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="label_desciption">* {% trans from 'dashboard' %}labels.field.description{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="" name="label_description" value="" autocapitalize="words" >
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-custom" name="submit">{% trans from 'global' %}global.save{% endtrans %}</button>
+            <button type="reset" class="btn btn-secondary btn-custom" onclick="window.location.href = '{{ path('labels_index')}}'">{% trans from 'global' %}global.cancel{% endtrans %}</button>
+        </div>
+    </div>
+
+</form>

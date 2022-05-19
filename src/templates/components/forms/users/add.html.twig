@@ -1,0 +1,43 @@
+<form action="{{ path('users_store') }}" method="post" enctype="multipart/form-data">
+
+    {#    {{ csrf_field() }}#}
+    <!-- Email -->
+    <div class="row justify-content-md-center mt-5">
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="user_email">* {% trans from 'dashboard' %}users.field.email{% endtrans %}</label>
+                <input type="text" class="form-control" placeholder="" name="user_email" value="" autocapitalize="words" required>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Roles -->
+    <div class="form-group">
+        {#        <label for="customer_id">{{ trans('backend.orders.customers.select') }}</label>#}
+        <label for="user_roles">* {% trans from 'dashboard' %}users.field.roles{% endtrans %}</label>
+
+        <select  class="form-control" name="user_roles[]" multiple required>
+            {#            <option value="{{ old('customer_id') }}" disabled selected>-- test --</option>#}
+            <option value="role" disabled selected>-- Roles  --</option>
+
+
+            {% for role in user_roles %}
+
+                <option>{{ role }}</option>
+
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-custom" name="submit">{% trans from 'global' %}global.save{% endtrans %}</button>
+            <button type="reset" class="btn btn-secondary btn-custom" onclick="window.location.href = '{{ path('users_index')}}'">{% trans from 'global' %}global.cancel{% endtrans %}</button>
+        </div>
+
+    </div>
+
+</form>

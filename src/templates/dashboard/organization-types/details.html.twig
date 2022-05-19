@@ -1,0 +1,100 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}{% trans from 'dashboard' %}organization_types.details{% endtrans %}{% endblock %}
+
+{% block searchbar %}
+    {% include 'components/forms/organization-types/search.html.twig' %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-1 text-center">{{ organizationType.name }}</h1>
+
+        {#    @include('components.messages')#}
+
+        <div class="card-body">
+            <div class="row">
+                <div class="table-responsive col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        {#                    <h3>{{ __('backend.customers.field.info') }}</h3>#}
+                        <h3>{% trans from 'dashboard' %}organization_types.info{% endtrans %}</h3>
+                    </nav>
+
+                    <table class="table table-hover table-light">
+                        <thead>
+
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}organization_types.field.name{% endtrans %}</th>
+                            <td>{{ organizationType.name }}</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="table-responsive col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        <h3>{% trans from 'dashboard' %}organizations.title{% endtrans %}</h3>
+                    </nav>
+
+
+                    {% for organizationOrganizationType in organizationType.organizationOrganizationType  %}
+                        <table class="table table-hover table-light">
+                            <thead>
+
+                            </thead>
+
+                            <tbody>
+
+                            <tr>
+
+                                <th scope="col">{% trans from 'dashboard' %}organization_types.field.name{% endtrans %}</th>
+
+                                <td>
+                                    <a style="color:inherit;" href="">
+                                        {{ organizationOrganizationType.organization.name }}
+                                    </a>
+                                </td>
+
+
+                                <td>
+
+                                    <a href="{{ path('organizations_details', {'id': organizationOrganizationType.organization.id }) }}">
+                                        <button type="submit" class="btn btn-small btn-warning" name="details">
+                                            <i class="fa fa-fw fa-info"></i>
+                                        </button>
+                                    </a>
+
+                                    <a data-toggle="modal" data-target="#deleteModal_{{ organizationOrganizationType.organization.id }}" href="#">
+                                        <button type="button" class="btn btn-small btn-danger" name="delete">
+                                            <i class="fa fa-fw fa-user-times"></i>
+                                        </button>
+                                    </a>
+                                    {% include 'components/modals/organization-types/detach.html.twig' with {'id': organizationOrganizationType.organization.id } %}
+
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+
+
+            <button type="reset" class="btn btn-success" onclick="window.location.href = '{{ path('organization_types_index')}}'">
+                <i class="fa fa-fw fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
+{% endblock %}

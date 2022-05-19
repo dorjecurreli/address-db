@@ -1,0 +1,6 @@
+<script src="/js/FilterSearch.js"></script>
+<div id="filterSearch"></div>
+<div class="px-3 pb-3" id="filterSearchUsedFilter" style="font-size: 1.1rem;"></div>
+<script>
+    var fs = new FilterSearch('filterSearch', 'filterSearchUsedFilter', {{ filterSearch.getFilters() | json_encode | raw }}, {{ filterSearch.getUsedFilters() | json_encode | raw }});
+</script>

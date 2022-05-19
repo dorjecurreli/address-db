@@ -1,0 +1,99 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+{% block title %}{% trans from 'dashboard' %}organizations.title{% endtrans %}{% endblock %}
+
+{% block searchbar %}
+    {% include 'components/forms/organizations/search.html.twig' %}
+{% endblock %}
+
+{% block content %}
+
+
+    {% include 'components/forms/organizations/filter.html.twig' %}
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{% trans from 'dashboard' %}organizations.title{% endtrans %}</h1>
+
+        <a href="{{ path('organizations_add') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus-circle fa-sm "></i> {% trans from 'dashboard' %}organizations.add{% endtrans %}</a>
+
+        <a href="{{ path('organizations_attach_show') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus-circle fa-sm "></i> {% trans from 'dashboard' %}organizations.attach{% endtrans %}</a>
+
+    </div>
+
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        {% include 'components/messages.html.twig' %}
+    </div>
+
+
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+
+
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{% trans from 'dashboard' %}organizations.list{% endtrans %}</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    {#                    {{ dump(organizations.address) }}#}
+                    <tr>
+                        <th>{% trans from 'dashboard' %}organizations.field.name{% endtrans %}</th>
+                        <th>{% trans from 'dashboard' %}address.field.country{% endtrans %}</th>
+                        <th>{% trans from 'dashboard' %}address.field.region{% endtrans %}</th>
+                        <th>{% trans from 'global' %}global.activities{% endtrans %}</th>
+                    </tr>
+
+
+
+                    </thead>
+
+
+                    <tfoot>
+                    {% for organization in organizations %}
+                        <tr>
+                            <td>{{ organization.name }}</td>
+                            <td>{{ organization.address.country }}</td>
+                            <td>{{ organization.address.region }}</td>
+                            {#                            <td>{{ organization.organizationType.name }}</td>#}
+
+                            <td>
+
+                                <a href="{{ path('organizations_details', {'id': organization.id}) }}">
+                                    <button type="submit" class="btn btn-small btn-warning" name="details">
+                                        <i class="fa fa-fw fa-info"></i>
+                                    </button>
+                                </a>
+
+                                <a href="{{ path('organizations_show', {'id': organization.id}) }}">
+                                    <button type="button" class="btn btn-small btn-info" name="edit">
+                                        <i class="fa fa-fw fa-edit"></i>
+                                    </button>
+                                </a>
+
+                                <a data-toggle="modal" data-target="#deleteModal_{{ organization.id }}" href="#">
+                                    <button type="button" class="btn btn-small btn-danger" name="delete">
+                                        <i class="fa fa-fw fa-user-times"></i>
+                                    </button>
+                                </a>
+                                {% include 'components/modals/organizations/delete.html.twig' with {'id': organization.id} %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">{% trans from 'dashboard' %}organizations.records.blank{% endtrans %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

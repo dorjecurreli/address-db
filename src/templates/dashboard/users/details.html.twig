@@ -1,0 +1,159 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}{% trans from 'dashboard' %}user.details{% endtrans %}{% endblock %}
+
+{% block searchbar %}
+    {% include 'components/forms/users/search.html.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-1 text-center">{{ user.email }}</h1>
+
+{#    @include('components.messages')#}
+
+    <div class="card-body">
+        <div class="row">
+            <div class="table-responsive col-12">
+                <nav class="navbar navbar-expand-lg navbar-light rounded">
+{#                    <h3>{{ __('backend.customers.field.info') }}</h3>#}
+                    <h3>{% trans from 'dashboard' %}users.info{% endtrans %}</h3>
+                </nav>
+
+                <table class="table table-hover table-light">
+                    <thead>
+
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <th scope="col">{% trans from 'dashboard' %}users.field.email{% endtrans %}</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">{% trans from 'dashboard' %}users.field.is_activated{% endtrans %}</th>
+                        <td>{{ user.isActivated ? 'Yes' : 'No' }}</td>
+{#                        TODO: Fix dynamic translation#}
+
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+{#        <div class="row">#}
+{#            <div class="table-responsive col-12">#}
+{#                <nav class="navbar navbar-expand-lg navbar-dark rounded">#}
+{#                    <h3> USER ADDRESS</h3>#}
+{#                    <h3> {{ __('backend.customers.field.data') }}</h3>#}
+{#                </nav>#}
+
+{#                <table class="table table-hover table-light">#}
+{#                    <thead>#}
+
+{#                    </thead>#}
+
+{#                    <tbody>#}
+{#                    <tr>#}
+{#                        <th scope="col">adressfield1</th>#}
+{#                        <th scope="col">{{ __('backend.customers.field.birth_location') }}</th>#}
+{#                        <td>{{ isset($customer->detail->birth_location) ? $customer->detail->birth_location : "ND"  }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th scope="col">adressfield2</th>#}
+{#                        <th scope="col">{{ __('backend.customers.field.birthday') }}</th>#}
+{#                        <td>{{ isset($customer->detail->birthday) ? $customer->detail->date_formatted : "ND"  }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th scope="col">adressfield3</th>#}
+{#                        <th scope="col">{{ __('backend.customers.field.residence') }}</th>#}
+{#                        <td>{{ isset($customer->detail->residence) ? $customer->detail->residence : "ND"  }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th scope="col">adressfield4</th>#}
+{#                        <th scope="col">{{ __('backend.customers.field.address') }}</th>#}
+{#                        <td>{{ isset($customer->detail->address) ? $customer->detail->address : "ND" }} {{ isset($customer->detail->number) ? $customer->detail->number : "snc"  }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th scope="col">adressfield5</th>#}
+{#                        <th scope="col">{{ __('backend.customers.field.postal_code') }}</th>#}
+{#                        <td>{{ isset($customer->detail->postal_code) ? $customer->detail->postal_code : "ND"  }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th scope="col">adressfield6</th>#}
+{#                        <th scope="col">{{ __('backend.customers.field.card_number') }}</th>#}
+{#                        <td>{{ isset($customer->detail->card_number) ? $customer->detail->card_number : "ND"  }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th scope="col">adressfield7</th>#}
+{#                        <th scope="col">{{ __('backend.customers.field.note') }}</th>#}
+{#                        <td>{{ isset($customer->detail->note) ? $customer->detail->note : "ND"  }}</td>#}
+{#                    </tr>#}
+{#                    </tbody>#}
+{#                </table>#}
+
+{#            </div>#}
+{#        </div>#}
+
+
+        <div class="row">
+            <div class="table-responsive col-12">
+                <nav class="navbar navbar-expand-lg navbar-light rounded">
+                    <h3>{% trans from 'dashboard' %}users.field.roles{% endtrans %}</h3>
+                </nav>
+                <table class="table table-hover table-light">
+                    <thead>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for role in user.roles %}
+                    <tr>
+                        <th scope="col">{% trans from 'global' %}global.name{% endtrans %}</th>
+
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ role }}
+                                </a>
+                            </td>
+
+                    </tr>
+                    {% endfor %}
+
+{#                    <tr>#}
+{#                        <th scope="col">{{ __('backend.orders.title') }}</th>#}
+{#                        @foreach($orders as $order)#}
+{#                        <td>#}
+{#                            <a style="color:inherit;" href="{{ route('admin.orders.details', $order->id) }}">#}
+{#                                {{ isset($order->code) ? $order->code : "ND"   }}#}
+{#                            </a>#}
+{#                        </td>#}
+{#                        <td>#}
+
+{#                            <a href="{{ route('admin.orders.details', $order->id) }}">#}
+{#                                <button type="submit" class="btn btn-small btn-warning" name="details">#}
+{#                                    <i class="fa fa-fw fa-info"></i>#}
+{#                                </button>#}
+{#                            </a>#}
+{#                        </td>#}
+{#                        @endforeach#}
+{#                    </tr>#}
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+        <button type="reset" class="btn btn-success" onclick="window.location.href = '{{ path('users_index')}}'">
+            <i class="fa fa-fw fa-chevron-left"></i>
+        </button>
+    </div>
+</div>
+{% endblock %}

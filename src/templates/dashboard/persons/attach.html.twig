@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}{% trans from 'dashboard' %}persons.attach{% endtrans %}{% endblock %}
+
+{% block searchbar %}
+    {% include 'components/forms/persons/search.html.twig' %}
+{% endblock %}
+
+{%  block content %}
+
+
+    <div class="jumbotron">
+        <h1 class="display-1 text-center">{% trans from 'dashboard' %}persons.attach{% endtrans %}</h1>
+
+        <div class="container">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        {% include 'components/messages.html.twig' %}
+                    </div>
+
+                    {% include 'components/forms/persons/attach.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'layouts/base.html.twig' %}
+{% block title %}{% trans from 'dashboard' %}labels.details{% endtrans %}{% endblock %}
+{% block searchbar %}
+    {% include 'components/forms/labels/search.html.twig' %}
+{% endblock %}
+{#
+<div class="col-md-12 col-lg-12 col-xl-12">#}
+   {#    {% include 'components/messages.html.twig' %}#}
+   {#
+   </div>
+   #}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-1 text-center">{{ label.name }}</h1>
+        <div class="card-body">
+            <div class="row">
+                <div class="table-responsive col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        <h3>{% trans from 'dashboard' %}labels.info{% endtrans %}</h3>
+                    </nav>
+                    <table class="table table-hover table-light">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}labels.field.name{% endtrans %}</th>
+                            <th scope="col">{{ label.name }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}labels.field.color{% endtrans %}</th>
+                            <td><button class="button" style="background-color: {{ label.color }} ">{{ label.color }}</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}labels.field.icon{% endtrans %}</th>
+                            <th scope="col"><i class="{{ label.icon }}"></i></th>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}labels.field.description{% endtrans %}</th>
+                            <th scope="col">{{ label.description }}</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        <h3>{% trans from 'dashboard' %}persons.title{% endtrans %}</h3>
+                    </nav>
+                    {% for personLabel in label.personLabel  %}
+                        <table class="table table-hover table-light">
+                            <thead>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="col">{% trans from 'dashboard' %}persons.field.name{% endtrans %}</th>
+                                <td>
+                                    <a style="color:inherit;" href="">
+                                        {{ personLabel.person.firstName ~ ' ' ~ personLabel.person.lastName }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('persons_details', {'id': personLabel.person.id }) }}">
+                                        <button type="submit" class="btn btn-small btn-warning" name="details">
+                                            <i class="fa fa-fw fa-info"></i>
+                                        </button>
+                                    </a>
+                                    <a data-toggle="modal" data-target="#deleteModal_{{ personLabel.person.id }}" href="#">
+                                        <button type="button" class="btn btn-small btn-danger" name="delete">
+                                            <i class="fa fa-fw fa-user-times"></i>
+                                        </button>
+                                    </a>
+                                    {% include 'components/modals/labels/detach.html.twig' with {'id': personLabel.person.id } %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col">{% trans from 'dashboard' %}person_label.field.is_blacklisted{% endtrans %}</th>
+                                <td>
+                                    <a style="color:inherit;" href="">
+                                        {{ personLabel.isBlacklisted }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col">{% trans from 'dashboard' %}person_label.field.is_vip{% endtrans %}</th>
+                                <td>
+                                    <a style="color:inherit;" href="">
+                                        {{ personLabel.isVIP }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col">{% trans from 'dashboard' %}person_label.field.is_contactable{% endtrans %}</th>
+                                <td>
+                                    <a style="color:inherit;" href="">
+                                        {{ personLabel.isContactable }}
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="reset" class="btn btn-success" onclick="window.location.href = '{{ path('labels_index')}}'">
+                <i class="fa fa-fw fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
+{% endblock %}

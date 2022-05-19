@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}{% trans from 'dashboard' %}users.show{% endtrans %}{% endblock %}
+
+{% block searchbar %}
+    {% include 'components/forms/users/search.html.twig' %}
+{% endblock %}
+
+{%  block content %}
+
+
+    <div class="jumbotron">
+        <h1 class="display-1 text-center">{% trans from 'dashboard' %}users.show{% endtrans %}</h1>
+
+        <div class="container">
+            <div class="card card-custom">
+                <div class="card-body">
+
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        {% include 'components/messages.html.twig' %}
+                    </div>
+                    {% include 'components/forms/users/edit.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

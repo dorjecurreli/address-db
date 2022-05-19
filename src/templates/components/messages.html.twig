@@ -1,0 +1,37 @@
+{% if app.session.flashbag.get('violations') == true %}
+    <div class="form-group">
+        {% for error in app.session.flashbag.get('violations_messages') %}
+            <div class="alert alert-danger" role="alert">
+                <em>{{ error }}</em>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% if app.session.flashbag.has('success_message') == true %}
+    <div class="alert alert-success" role="alert">
+        <em>{{ app.session.flashbag.get('success_message')[0] }}</em>
+    </div>
+{% endif %}
+
+
+{% if app.session.flashbag.has('danger_message') == true %}
+    <div class="alert alert-danger" role="alert">
+        <em>{{ app.session.flashbag.get('danger_message')[0] }}</em>
+    </div>
+{% endif %}
+
+
+{% if app.session.flashbag.has('warning_message') == true %}
+    <div class="alert alert-warning" role="alert">
+        <em>{{ app.session.flashbag.get('warning_message')[0] }}</em>
+    </div>
+{% endif %}
+
+
+{% if app.session.flashbag.has('info_message') == true %}
+    <div class="alert alert-info" role="alert">
+        <em>{{ app.session.flashbag.get('info_message')[0] }}</em>
+    </div>
+{% endif %}

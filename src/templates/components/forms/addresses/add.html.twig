@@ -1,0 +1,63 @@
+<h3>{% trans from 'dashboard' %}address.field.title{% endtrans %}</h3>
+
+<div class="row justify-content-md-center mt-5">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="street">{% trans from 'dashboard' %}address.field.street{% endtrans %}</label>
+            <input type="text" class="form-control" placeholder="{% trans from 'dashboard' %}address.field.street{% endtrans %}" name="street" value="" autocapitalize="words" required>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-md-center mt-5">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="house_number">{% trans from 'dashboard' %}address.field.house_number{% endtrans %}</label>
+            <input type="text" class="form-control" placeholder="{% trans from 'dashboard' %}address.field.house_number{% endtrans %}" name="house_number"  value="" autocapitalize="words" required>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-md-center mt-5">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="postal_code">{% trans from 'dashboard' %}address.field.postal_code{% endtrans %}</label>
+            <input type="text" class="form-control" placeholder="{% trans from 'dashboard' %}address.field.postal_code{% endtrans %}" name="postal_code" value="">
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-md-center mt-5">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="city">{% trans from 'dashboard' %}address.field.city{% endtrans %}</label>
+            <input type="text" class="form-control" placeholder="{% trans from 'dashboard' %}address.field.city{% endtrans %}" name="city" value="" required>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-md-center mt-5">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="region">{% trans from 'dashboard' %}address.field.region{% endtrans %}</label>
+            <input type="text" class="form-control" placeholder="{% trans from 'dashboard' %}address.field.region{% endtrans %}" name="region" value="">
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+
+    <label for="country">* {% trans from 'dashboard' %}address.field.country{% endtrans %}</label>
+    <select class="form-control" name="country" required>
+
+        <option value="" disabled selected>-- test --</option>
+
+
+        {% for country  in countries %}
+
+            <option>{{ country }}</option>
+
+        {% endfor %}
+
+    </select>
+</div>

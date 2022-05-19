@@ -1,0 +1,19 @@
+
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+
+    <!-- 500 Error Text -->
+    <div class="text-center">
+        <div class="error mx-auto" data-text="500">500</div>
+        <p class="lead text-gray-800 mb-5">Server Error</p>
+        <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
+        <a href="{{ path('app_dashboard') }}">&larr; Back to Dashboard</a>
+    </div>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}{% trans from 'dashboard' %}organization_types.title{% endtrans %}{% endblock %}
+
+{% block searchbar %}
+    {% include 'components/forms/organization-types/search.html.twig' %}
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{% trans from 'dashboard' %}organization_types.title{% endtrans %}</h1>
+
+        <a href="{{ path('organization_types_add') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus-circle fa-sm "></i> {% trans from 'dashboard' %}organization_types.add{% endtrans %}</a>
+    </div>
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        {% include 'components/messages.html.twig' %}
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{% trans from 'dashboard' %}organization_types.list{% endtrans %}</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>{% trans from 'dashboard' %}organization_types.field.name{% endtrans %}</th>
+                        <th>{% trans from 'global' %}global.activities{% endtrans %}</th>
+                    </tr>
+                    </thead>
+
+
+                    <tfoot>
+                    {% for organization_type in organization_types %}
+                        <tr>
+                            <td>{{ organization_type.name }}</td>
+                            <td>
+
+
+                                <a href="{{ path('organization_types_details', {'id': organization_type.id}) }}">
+                                    <button type="submit" class="btn btn-small btn-warning" name="details">
+                                        <i class="fa fa-fw fa-info"></i>
+                                    </button>
+                                </a>
+
+                                <a href="{{ path('organization_type_show', {'id': organization_type.id}) }}">
+                                    <button type="button" class="btn btn-small btn-info" name="edit">
+                                        <i class="fa fa-fw fa-edit"></i>
+                                    </button>
+                                </a>
+                                <a data-toggle="modal" data-target="#deleteModal_{{ organization_type.id }}" href="#">
+                                    <button type="button" class="btn btn-small btn-danger" name="delete">
+                                        <i class="fa fa-fw fa-user-times"></i>
+                                    </button>
+                                </a>
+                                {% include 'components/modals/organization-types/delete.html.twig' with {'id': organization_type.id} %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">{% trans from 'dashboard' %}organization_types.records.blank{% endtrans %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

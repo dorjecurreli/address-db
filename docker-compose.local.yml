@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  # =app
+  app:
+    image: "sindriainc/nginx-php:${NGINX_PHP_TAG}-${NGINX_PHP_VERSION}"
+    container_name: "${APP_NAME}"
+    volumes:
+            #- "${BASE_PATH}/${PROJECT_PATH}/${CODE_PATH}:${APP_CODE_PATH}"
+      - "./src:/var/www/app"  
+    hostname: "${APP_NAME}.local"
+    #ports:
+    #  - "8081:80"
+    networks:
+      default:
+        ipv4_address: "${APP_IP_ADDRESS}"
+        aliases:
+          - "${APP_NAME}.local"
+    #networks:
+    #  vpc_xdev:
+    #    ipv4_address: "${APP_IP_ADDRESS}"
+    #    aliases:
+    #      - "${APP_NAME}.local"
+ # =db
+  db:
+    image: "sindriainc/mariadb:${MARIADB_TAG}-${MARIADB_VERSION}"
+    container_name: "${APP_NAME}-db"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    volumes:
+      - "/var/lib/mysql"
+    hostname: "${APP_NAME}-db.local"
+    networks:
+      default:
+        ipv4_address: "${DATABASE_IP_ADDRESS}"
+        aliases:
+          - "${APP_NAME}-db.local"
+    #networks:
+    #  vpc_xdev:
+    #    ipv4_address: "${DATABASE_IP_ADDRESS}"
+    #    aliases:
+    #      - "${APP_NAME}-db.local"
+
+
+# =networks
+networks:
+  default:
+    name: "vpc_${APP_NAME}"
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${NETWORK_SUBNET}
+
+# =networks
+#networks:
+#  vpc_xdev:
+#    external: true

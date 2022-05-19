@@ -1,0 +1,233 @@
+{% extends 'layouts/base.html.twig' %}
+{% block title %}{% trans from 'dashboard' %}persons.details{% endtrans %}{% endblock %}
+{% block searchbar %}
+    {% include 'components/forms/persons/search.html.twig' %}
+{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+    <h1 class="display-1 text-center">{{ person.firstName ~ ' ' ~ person.lastName}}</h1>
+{#    <div class="card-body">#}
+        <div class="row">
+            <div class="table-responsive col-12">
+                <nav class="navbar navbar-expand-lg navbar-light rounded">
+                    <h3>{% trans from 'dashboard' %}persons.info{% endtrans %}</h3>
+                </nav>
+                <table class="table table-hover table-light">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="col">{% trans from 'dashboard' %}persons.field.first_name{% endtrans %}</th>
+                        <th scope="col">{{ person.firstName }}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">{% trans from 'dashboard' %}persons.field.last_name{% endtrans %}</th>
+                        <th scope="col">{{ person.lastName }}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">{% trans from 'dashboard' %}persons.field.salutation{% endtrans %}</th>
+                        <th scope="col">{{ person.salutation }}</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    {% if person.organization is not null and person.organization is defined %}
+            <div class="table-responsive col-12">
+                <nav class="navbar navbar-expand-lg navbar-light rounded">
+                    <h3>{% trans from 'dashboard' %}organizations.title{% endtrans %}</h3>
+                </nav>
+
+                    <table class="table table-hover table-light">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}organizations.field.name{% endtrans %}</th>
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ person.organization.name }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('organizations_details', {'id': person.organization.id }) }}">
+                                    <button type="submit" class="btn btn-small btn-warning" name="details">
+                                        <i class="fa fa-fw fa-info"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+
+    {% endif %}
+
+        <div class="card-body">
+
+                <div class="table-responsive col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        <h3>{% trans from 'dashboard' %}address.field.title{% endtrans %}</h3>
+                    </nav>
+                    <table class="table table-hover table-light">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}address.field.street{% endtrans %}</th>
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ person.address.street }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}address.field.house_number{% endtrans %}</th>
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ person.address.houseNumber }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}address.field.postal_code{% endtrans %}</th>
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ person.address.postalCode }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}address.field.city{% endtrans %}</th>
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ person.address.city }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}address.field.region{% endtrans %}</th>
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ person.address.region }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{% trans from 'dashboard' %}address.field.country{% endtrans %}</th>
+                            <td>
+                                <a style="color:inherit;" href="">
+                                    {{ person.address.country }}
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+{#            <div class="row">#}
+{#                <div class="table-responsive col-12">#}
+{#                    <nav class="navbar navbar-expand-lg navbar-light rounded">#}
+{#                        <h3>{% trans from 'dashboard' %}labels.title{% endtrans %}</h3>#}
+{#                    </nav>#}
+{#                    {% for personLabel in person.personLabel  %}#}
+{#                        <table class="table table-hover table-light">#}
+{#                            <thead>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            <tr>#}
+{#                                <th scope="col">{% trans from 'dashboard' %}persons.field.label{% endtrans %}</th>#}
+{#                                <td>#}
+{#                                    <a style="color:inherit;" href="">#}
+{#                                        {{ personLabel.label.name }}#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                                <td>#}
+{#                                    <a href="{{ path('labels_details', {'id': personLabel.label.id }) }}">#}
+{#                                        <button type="submit" class="btn btn-small btn-warning" name="details">#}
+{#                                            <i class="fa fa-fw fa-info"></i>#}
+{#                                        </button>#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="col">{% trans from 'dashboard' %}person_label.field.is_blacklisted{% endtrans %}</th>#}
+{#                                <td>#}
+{#                                    <a style="color:inherit;" href="">#}
+{#                                        {{ personLabel.isBlacklisted }}#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="col">{% trans from 'dashboard' %}person_label.field.is_vip{% endtrans %}</th>#}
+{#                                <td>#}
+{#                                    <a style="color:inherit;" href="">#}
+{#                                        {{ personLabel.isVIP }}#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="col">{% trans from 'dashboard' %}person_label.field.is_contactable{% endtrans %}</th>#}
+{#                                <td>#}
+{#                                    <a style="color:inherit;" href="">#}
+{#                                        {{ personLabel.isContactable }}#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                        {% include 'components/modals/persons/attach.html.twig'  %}#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+
+                <div class="table-responsive col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        <h3>Labels</h3>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item" style="margin:0px 10px;">
+                                <a data-toggle="modal" data-target="#attachLabelModal" href="#">
+                                    <button type="button" class="patients-button btn btn-small btn-info" name="submit"><i class="fa fa-fw fa-user-plus"></i></button>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-toggle="modal" data-target="#removeModal" href="#">
+                                    <button type="button" class=" patients-button btn btn-small btn-danger" name="submit"><i class="fa fa-fw fa-user-times"></i></button>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+{#                    <table class="table table-hover table-light">#}
+{#                        <thead>#}
+{#                        <tr>#}
+{#                            <th scope="col">Name</th>#}
+{#                            <th scope="col">Color</th>#}
+{#                            <th scope="col">Activities</th>#}
+{#                        </tr>#}
+{#                        </thead>#}
+{#                        <tbody>#}
+{#                        {% for personLabel in person.personLabel  %}#}
+{#                        <tr>#}
+{#                            <td>{{ personLabel.label.name }}</td>#}
+{#                            <td>{{ personLabel.label.color }}</td>#}
+{#                            <td>#}
+{#                                <a href="{{ path('labels_details', {'id': personLabel.label.id }) }}">#}
+{#                                    <button type="submit" class="btn btn-small btn-warning" name="details">#}
+{#                                        <i class="fa fa-fw fa-info"></i>#}
+{#                                    </button>#}
+{#                                </a>#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        </tbody>#}
+{#                        {% endfor %}#}
+{#                    </table>#}
+                </div>
+
+            <button type="reset" class="btn btn-success" onclick="window.location.href = '{{ path('labels_index')}}'">
+                <i class="fa fa-fw fa-chevron-left"></i>
+            </button>
+
+{#    </div>#}
+{% endblock %}
